@@ -1,0 +1,8 @@
+.DS_Store
+.dart_tool/
+
+.packages
+.pub/
+
+build/
+example/lib/syncing_api_config.dart

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/fluent_aliyun_oss.iml" filepath="$PROJECT_DIR$/fluent_aliyun_oss.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/fluent_aliyun_oss_android.iml" filepath="$PROJECT_DIR$/android/fluent_aliyun_oss_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example/android/fluent_aliyun_oss_example_android.iml" filepath="$PROJECT_DIR$/example/android/fluent_aliyun_oss_example_android.iml" />
+    </modules>
+  </component>
+</project>
