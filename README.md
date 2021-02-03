@@ -1,12 +1,19 @@
 # fluent_aliyun_oss
 
+Copied ad edited source code from https://github.com/msidolphin/flutter_aliyun_oss_plugin for personal use.
+
 [![Pub Version (including pre-releases)](https://img.shields.io/pub/v/fluent_aliyun_oss?include_prereleases)](https://pub.flutter-io.cn/packages/fluent_aliyun_oss) [![GitHub license](https://img.shields.io/github/license/jeremaihloo/fluent_aliyun_oss)](https://github.com/jeremaihloo/fluent_aliyun_oss/blob/master/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/jeremaihloo/fluent_aliyun_oss?style=social)](https://github.com/jeremaihloo/fluent_aliyun_oss/stargazers)
 
 阿里云对象存储(aliyun oss)的flutter插件.
 
 ## Getting Started
 
-First, add image_picker as a dependency in your pubspec.yaml file.
+First, add fluent_aliyun_oss as a dependency in your pubspec.yaml file.
+
+```yaml
+dependencies:
+  fluent_aliyun_oss: ^0.0.1
+```
 
 ## Example
 
@@ -186,4 +193,8 @@ class _MyAppState extends State<MyApp> {
 
 ```
 
+## TODO
+
+- 将ios部分由object c 转写为 swift
+- 添加更多API
 
