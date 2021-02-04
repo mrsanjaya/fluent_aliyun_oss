@@ -1,3 +1,4 @@
+/// 阿里云OSS凭证
 class OSSCredential {
   final String accessKeyId;
   final String accessKeySecret;

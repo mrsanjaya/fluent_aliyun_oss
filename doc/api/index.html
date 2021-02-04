@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 0.38.0">
+  <meta name="description" content="fluent_aliyun_oss API docs, for the Dart programming language.">
+  <title>fluent_aliyun_oss - Dart API docs</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+
+</head>
+
+<body data-base-href=""
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://github.com/jeremaihloo/fluent_aliyun_oss">fluent_aliyun_oss package</a></li>
+  </ol>
+  <div class="self-name">fluent_aliyun_oss</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="https://github.com/jeremaihloo/fluent_aliyun_oss">fluent_aliyun_oss package</a></li>
+    </ol>
+    
+    <h5 class="hidden-xs"><span class="package-name">fluent_aliyun_oss</span> <span class="package-kind">package</span></h5>
+    <ol>
+          <li class="section-title">Libraries</li>
+          <li><a href="client_config/client_config-library.html">client_config</a></li>
+          <li><a href="fluent_aliyun_oss/fluent_aliyun_oss-library.html">fluent_aliyun_oss</a></li>
+          <li><a href="oss_credential/oss_credential-library.html">oss_credential</a></li>
+          <li><a href="put_object_event_handler/put_object_event_handler-library.html">put_object_event_handler</a></li>
+          <li><a href="put_object_progress/put_object_progress-library.html">put_object_progress</a></li>
+          <li><a href="put_object_request/put_object_request-library.html">put_object_request</a></li>
+          <li><a href="put_object_response/put_object_response-library.html">put_object_response</a></li>
+          <li><a href="put_object_result/put_object_result-library.html">put_object_result</a></li>
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <section class="desc markdown">
+        <h1 id="fluent_aliyun_oss">fluent_aliyun_oss</h1>
+<p>Copied ad edited source code from <a href="https://github.com/msidolphin/flutter_aliyun_oss_plugin">https://github.com/msidolphin/flutter_aliyun_oss_plugin</a> for personal use.</p>
+<p><a href="https://pub.flutter-io.cn/packages/fluent_aliyun_oss"><img src="https://img.shields.io/pub/v/fluent_aliyun_oss?include_prereleases" alt="Pub Version (including pre-releases)"></a> <a href="https://github.com/jeremaihloo/fluent_aliyun_oss/blob/master/LICENSE"><img src="https://img.shields.io/github/license/jeremaihloo/fluent_aliyun_oss" alt="GitHub license"></a> <a href="https://github.com/jeremaihloo/fluent_aliyun_oss/stargazers"><img src="https://img.shields.io/github/stars/jeremaihloo/fluent_aliyun_oss?style=social" alt="GitHub stars"></a></p>
+<p>阿里云对象存储(aliyun oss)的flutter插件.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>First, add fluent_aliyun_oss as a dependency in your pubspec.yaml file.</p>
+<pre class="language-yaml"><code class="language-yaml">dependencies:
+  fluent_aliyun_oss: ^0.0.1
+</code></pre>
+<h2 id="example">Example</h2>
+<pre class="language-dart"><code class="language-dart">import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fluent_aliyun_oss/client_config.dart';
+import 'package:fluent_aliyun_oss/put_object_event_handler.dart';
+import 'package:fluent_aliyun_oss/put_object_request.dart';
+import 'package:fluent_aliyun_oss_example/syncing_api_config.dart';
+import 'package:flutter/material.dart';
+import 'dart:async';
+
+import 'package:flutter/services.dart';
+import 'package:fluent_aliyun_oss/fluent_aliyun_oss.dart';
+import 'package:getdemos_commonapis/api.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() =&gt; _MyAppState();
+}
+
+class _MyAppState extends State&lt;MyApp&gt; {
+  String _platformVersion = 'Unknown';
+
+  final ImagePicker _picker = ImagePicker();
+
+  String text = "";
+
+  String imgUrl;
+
+  double _precent1 = 0;
+  double _precent2 = 0;
+
+  FluentAliyunOss ossClient;
+
+  ApiClient apiClient;
+  AuthApi authApi;
+  FilesApi filesApi;
+
+  @override
+  void initState() {
+    super.initState();
+    initPlatformState();
+  }
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  Future&lt;void&gt; initPlatformState() async {
+    String platformVersion;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      platformVersion = await FluentAliyunOss.platformVersion;
+
+      apiClient =
+          new ApiClient(basePath: "https://dev.syncing.mashangjiama.com");
+      authApi = new AuthApi(apiClient);
+      filesApi = new FilesApi(apiClient);
+
+      final payload = new LoginModel()..loginId = username;
+      payload.password = password;
+
+      final loginResult = await authApi.apiAuthLoginPwdPost(body: payload);
+      if (loginResult.ok) {
+        apiClient.setAccessToken(loginResult.data.replaceAll("Bearer ", ""));
+        final csResult = await filesApi.apiFilesCsGet();
+        if (csResult.ok) {
+          ossClient = await FluentAliyunOss.init(
+            config: new AliyunOssClientConfig(
+              endpoint: "oss-cn-shanghai.aliyuncs.com",
+              accessKeyId: csResult.data.accessKeyId,
+              accessKeySecret: csResult.data.accessKeySecret,
+              securityToken: csResult.data.securityToken,
+            ),
+          );
+        }
+      }
+    } on PlatformException {
+      platformVersion = 'Failed to get platform version.';
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      _platformVersion = platformVersion;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('fluent_aliyun_oss example app'),
+        ),
+        body: Builder(
+          builder: (context) {
+            return Container(
+              padding: EdgeInsets.all(16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      _picker
+                          .getImage(source: ImageSource.gallery)
+                          .then((PickedFile file) {
+                        if (file == null) return;
+                        Future.delayed(Duration(milliseconds: 60), () async {
+                          _precent1 = 0;
+                          setState(() {});
+                          PutObjectEventHandler handler = await ossClient
+                              .putObject(AliyunOssPutObjectRequest(
+                                  bucketName: 'syncing-api',
+                                  objectName: "test",
+                                  file: file.path));
+                          handler.onProgress = (currentSize, totalSize) {
+                            _precent1 = currentSize / totalSize;
+                            if (_precent1 &gt;= 1) _precent1 = 0.9999;
+                            setState(() {});
+                          };
+                          handler.onSuccess = (url) {
+                            _precent1 = 1;
+                            ossClient
+                                .signUrl('syncing-api', 'test')
+                                .then((signedUrl) =&gt; setState(() {
+                                      imgUrl = signedUrl;
+                                    }));
+                          };
+                          handler.onFailure = (message) {
+                            print(message);
+                          };
+                        });
+                      });
+                    },
+                    child: Text('异步上传'),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  new LinearPercentIndicator(
+                    percent: _precent1,
+                    backgroundColor: Colors.grey,
+                    progressColor: Colors.blue,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Center(
+                    child: Text('Running on: $_platformVersion\n'),
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 15),
+                      child: Text(text)),
+                  imgUrl != null
+                      ? CachedNetworkImage(imageUrl: imgUrl)
+                      : SizedBox(
+                          height: 0,
+                        )
+                ],
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+</code></pre>
+<h2 id="todo">TODO</h2>
+<ul>
+<li>将ios部分由object c 转写为 swift</li>
+<li>添加更多API</li>
+</ul>
+      </section>
+      
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="client_config">
+            <span class="name"><a href="client_config/client_config-library.html">client_config</a></span>           
+          </dt>
+          <dd>
+             
+          </dd>
+          <dt id="fluent_aliyun_oss">
+            <span class="name"><a href="fluent_aliyun_oss/fluent_aliyun_oss-library.html">fluent_aliyun_oss</a></span>           
+          </dt>
+          <dd>
+             
+          </dd>
+          <dt id="oss_credential">
+            <span class="name"><a href="oss_credential/oss_credential-library.html">oss_credential</a></span>           
+          </dt>
+          <dd>
+             
+          </dd>
+          <dt id="put_object_event_handler">
+            <span class="name"><a href="put_object_event_handler/put_object_event_handler-library.html">put_object_event_handler</a></span>           
+          </dt>
+          <dd>
+             
+          </dd>
+          <dt id="put_object_progress">
+            <span class="name"><a href="put_object_progress/put_object_progress-library.html">put_object_progress</a></span>           
+          </dt>
+          <dd>
+             
+          </dd>
+          <dt id="put_object_request">
+            <span class="name"><a href="put_object_request/put_object_request-library.html">put_object_request</a></span>           
+          </dt>
+          <dd>
+             
+          </dd>
+          <dt id="put_object_response">
+            <span class="name"><a href="put_object_response/put_object_response-library.html">put_object_response</a></span>           
+          </dt>
+          <dd>
+             
+          </dd>
+          <dt id="put_object_result">
+            <span class="name"><a href="put_object_result/put_object_result-library.html">put_object_result</a></span>           
+          </dt>
+          <dd>
+             
+          </dd>
+        </dl>
+      </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    fluent_aliyun_oss
+      0.0.1
+  </span>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

@@ -1,17 +1,14 @@
 import 'package:flutter/cupertino.dart';
 
+/// 上传请求
 class AliyunOssPutObjectRequest {
-
   /// 支持路径
   final String file;
   final String bucketName;
   final String objectName;
 
-  AliyunOssPutObjectRequest({
-    @required this.file,
-    @required this.bucketName,
-    this.objectName
-  });
+  AliyunOssPutObjectRequest(
+      {@required this.file, @required this.bucketName, this.objectName});
 
   Map<String, dynamic> toMap() {
     return {
@@ -20,6 +17,4 @@ class AliyunOssPutObjectRequest {
       "objectName": this.objectName,
     };
   }
-
-
 }

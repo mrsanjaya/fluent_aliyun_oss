@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
+/// 阿里云OSS配置
 class AliyunOssClientConfig {
   /// oss-cn-shenzhen.aliyuncs.com
   final String endpoint;
@@ -8,10 +9,11 @@ class AliyunOssClientConfig {
   String accessKeySecret;
   String securityToken;
 
-  AliyunOssClientConfig({@required this.endpoint,
-    @required this.accessKeyId,
-    @required this.accessKeySecret,
-    @required this.securityToken});
+  AliyunOssClientConfig(
+      {@required this.endpoint,
+      @required this.accessKeyId,
+      @required this.accessKeySecret,
+      @required this.securityToken});
 
   Map<String, String> toMap() {
     return {

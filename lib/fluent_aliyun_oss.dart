@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 
 const String CLIENT_KEY = "primary";
 
+/// 阿里云OSS插件
 class FluentAliyunOss {
   static MethodChannel _channel = const MethodChannel('fluent_aliyun_oss')
     ..setMethodCallHandler(_methodHandler);
@@ -20,6 +21,7 @@ class FluentAliyunOss {
   static final StreamController<PutObjectResult> _streamController =
       new StreamController<PutObjectResult>.broadcast();
 
+  /// 初始化阿里云OSS配置
   static Future<FluentAliyunOss> init(
       {@required AliyunOssClientConfig config}) async {
     Map<String, Object> obj = config.toMap();
@@ -70,6 +72,7 @@ class FluentAliyunOss {
     return Future.value();
   }
 
+  /// 签名URL
   Future<String> signUrl(
     String bucketName,
     String objectKey, {

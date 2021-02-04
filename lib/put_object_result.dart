@@ -1,14 +1,20 @@
+/// 上传结果
 class PutObjectResult {
-
   final String url;
   final String taskId;
   final int currentSize;
   final int totalSize;
   final String errorMessage;
 
-  PutObjectResult({this.url, this.taskId, this.currentSize, this.totalSize, this.errorMessage, });
+  PutObjectResult({
+    this.url,
+    this.taskId,
+    this.currentSize,
+    this.totalSize,
+    this.errorMessage,
+  });
 
-  bool get isFinished  => url != null && url.trim().isNotEmpty;
+  bool get isFinished => url != null && url.trim().isNotEmpty;
 
   bool get isError => errorMessage != null && errorMessage.trim().isNotEmpty;
 
@@ -16,7 +22,6 @@ class PutObjectResult {
   String toString() {
     return 'PutObjectResult{url: $url, taskId: $taskId, currentSize: $currentSize, totalSize: $totalSize, errorMessage: $errorMessage}';
   }
-
 
 //  PutObjectResult({this.url, this.requestId, this.statusCode, this.errorCode, this.message, this.eTag, this.isSuccess});
 //
