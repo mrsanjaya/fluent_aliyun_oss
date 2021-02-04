@@ -1,4 +1,3 @@
-
 /// 上传进度
 class PutObjectProgress {
   final int currentSize;

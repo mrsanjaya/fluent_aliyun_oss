@@ -28,8 +28,10 @@ class PutObjectEventHandler {
 
   /// 成功回调
   OnUploadSuccess onSuccess;
+
   /// 失败回调
   OnUploadFailure onFailure;
+
   /// 进度回调
   OnProgress onProgress;
 }
