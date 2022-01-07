@@ -67,7 +67,7 @@ class AliyunOssClient(context: Context?, private val clientConfig: AliyunOssClie
         return objectName
     }
 
-    fun signUrl(bucketName: String, objectKey: String, expiredTimeInSeconds: Long): String {
+    fun signUrl(bucketName: String, objectKey: String, expiredTimeInSeconds: Int): String {
         return ossClient.presignConstrainedObjectURL(bucketName, objectKey, expiredTimeInSeconds)
     }
 
