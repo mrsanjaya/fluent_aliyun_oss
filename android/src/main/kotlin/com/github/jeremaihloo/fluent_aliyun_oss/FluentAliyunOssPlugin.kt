@@ -103,9 +103,9 @@ class FluentAliyunOssPlugin : FlutterPlugin, MethodCallHandler {
             val bucketName = call.argument<String>("bucketName")
             val objectName = call.argument<String>("objectName")
             val clientKey = call.argument<String>("clientKey")
-            val expiredTimeInSeconds = call.argument<Long>("expiredTimeInSeconds")
+            val expiredTimeInSeconds = call.argument<Int>("expiredTimeInSeconds")
             val ossClient: AliyunOssClient = ossClients.get(clientKey)!!
-            val signedUrl = ossClient.signUrl(bucketName!!, objectName!!, expiredTimeInSeconds!!)
+            val signedUrl = ossClient.signUrl(bucketName!!, objectName!!, Long.parse(expiredTimeInSeconds!!))
             result.success(signedUrl)
         } else if (call.method == "dispose") {
             val clientKey = call.argument<String>("clientKey")
